@@ -127,6 +127,25 @@ public class User implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+
+	public User(Long id, String firstname, String lastname, String email, String username, String password,
+			String confirmPassword, Set<Role> roles) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+		this.roles = roles;
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public String toString() {
