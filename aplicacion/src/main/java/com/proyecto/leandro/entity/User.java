@@ -14,8 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.springframework.lang.NonNull;
 
 @Entity
 public class User implements Serializable{
@@ -31,23 +35,32 @@ public class User implements Serializable{
 	private Long id;
 	
 	@Column
+	@NotBlank
+	@Size(min=5,max=20, message="No se cumple las reglas del tamaño(minimo de 3 caracteres y maximo de 20)")
 	private String firstname;
 	
 	@Column
+	@NotBlank
 	private String lastname;
 	
 	@Column
+	@NotBlank
 	private String email;
 	
 	@Column
+	@NotBlank
 	private String username;
 	
 	@Column
+	@NotBlank
 	private String password;
 	
 	@Transient
+	@NotBlank
 	private String confirmPassword;
 	
+	
+	@Size(min=1)
 	@ManyToMany(fetch= FetchType.LAZY)
 	@JoinTable(name= "user_roles",
 				joinColumns = @JoinColumn(name="user_id"),
